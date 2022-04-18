@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+//page & layout imports
+import Homepage from './pages/Homepage';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Navbar from './components/Navbar';
+import Faculty from './pages/Faculty';
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <Switch>
+        <Route exact path='/'>
+          <Login/>
+        </Route>
+        <Route path='/department'>
+          <Homepage/>
+        </Route>
+        <Route path='/faculty'>
+          <Faculty/>
+        </Route>
+      </Switch>
     </div>
+    </Router>
   );
 }
 
