@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faculties",
+  "info": {
+    "singularName": "faculty",
+    "pluralName": "faculties",
+    "displayName": "faculty"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "highest_degree": {
+      "type": "string"
+    },
+    "institution": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "specialization": {
+      "type": "string"
+    },
+    "designated": {
+      "type": "date"
+    },
+    "joining": {
+      "type": "date"
+    }
+  }
+}
