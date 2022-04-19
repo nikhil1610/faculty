@@ -1,0 +1,1 @@
+export const BACKEND_URL = 'https://tnp-nsut.herokuapp.com';
