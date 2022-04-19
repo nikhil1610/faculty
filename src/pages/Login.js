@@ -1,12 +1,18 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import {Link} from "react-router-dom";
+
+// import { AuthContext } from '../context/AuthContext';
+import SignUp from './SignUp';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    // const { login } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    // const history= useHistory()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +21,7 @@ const Login = () => {
 
         console.log(email, password);
 
-        login({email, password});
+        // login({email, password});
     }
 
     return(
@@ -42,7 +48,7 @@ const Login = () => {
                                 <Form.Group>
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="password"
                                         required
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
@@ -52,7 +58,14 @@ const Login = () => {
                         </Row>
                         <Row className='mt-5'>
                             <Col xs={12}>
-                                <Button type='submit'>Login</Button>
+                                <Button style={{width:"100%"}} type='submit'>LOGIN</Button>
+                            </Col>
+                        </Row>
+                        <Row className='mt-3'>
+                            <Col>
+                            <Link to='/register'>
+                            Don't have an account? Sign Up
+                            </Link>
                             </Col>
                         </Row>
                     </Form>
