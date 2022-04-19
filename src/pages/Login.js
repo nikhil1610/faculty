@@ -2,11 +2,12 @@ import { Button, Col, Form, Row } from 'react-bootstrap';
 import React, { useContext, useState } from 'react';
 import {Link} from "react-router-dom";
 
-// import { AuthContext } from '../context/AuthContext';
-import SignUp from './SignUp';
+// import AuthContextProvider, { AuthContext } from '../context/AuthContext';
+import AuthContextProvider, { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-    // const { login } = useContext(AuthContext);
+    console.log(useContext(AuthContext))
+    const { login } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,7 +22,9 @@ const Login = () => {
 
         console.log(email, password);
 
-        // login({email, password});
+        // AuthContextProvider.login({email,password});
+
+        login({email, password});
     }
 
     return(

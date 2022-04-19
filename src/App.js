@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 //page & layout imports
@@ -6,10 +7,17 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Navbar from './components/Navbar';
 import Faculty from './pages/Faculty';
+import FacultyDetails from './pages/FacultyDetails';
+import AuthContextProvider, { AuthContext } from './context/AuthContext';
 
 function App() {
+  console.log('authContext' + useContext(AuthContext));
+  // const {state: { isAuthenticated, isLoading }}= useContext(AuthContext);
+  // console.log('isAuthenticated'+ isAuthenticated);
+
   return (
     <Router>
+    <AuthContextProvider>
     <div className="App">
     <Navbar/>
       <Routes>
@@ -17,8 +25,10 @@ function App() {
         <Route path='/register' element={<SignUp/>}/>
         <Route exact path='/department' element={<Homepage/>}/>
         <Route exact path='/faculty' element={<Faculty/>}/>
-      </Routes>
+        <Route path='/faculty-details' element={<FacultyDetails/>}/>
+     </Routes>
     </div>
+    </AuthContextProvider>
     </Router>
   );
 }

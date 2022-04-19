@@ -13,7 +13,7 @@ class AuthContextProvider extends Component{
         jwt: null   
     }
 
-    login = async ({email, password}) => {
+     login = async ({email, password}) => {
         try{
             const response = await axiosInstance.post('/auth/local/', {
                 identifier: email,
@@ -27,7 +27,7 @@ class AuthContextProvider extends Component{
                 loginError: null
             }); 
 
-            localStorage.setItem('tnp-admin-jwt', response.data.jwt);
+            localStorage.setItem('faculty-jwt', response.data.jwt);
         } catch(err){
             console.log(err, err.response);
             this.setState({
@@ -40,11 +40,11 @@ class AuthContextProvider extends Component{
         }
     }
 
-    register = async ({email, username, password}) => {
+    register = async ({name,email, password,department,isCoordinator}) => {
         return new Promise(async (resolve, reject) => {
             try{
                 await axiosInstance.post('/auth/local/register', {
-                    username, email, password
+                    username: name, email, password, department, isCoordinator
                 });
                 resolve();
             } catch(err){
@@ -70,11 +70,11 @@ class AuthContextProvider extends Component{
             jwt: null
         }); 
 
-        localStorage.removeItem('tnp-admin-jwt');
+        localStorage.removeItem('faculty-jwt');
     }
 
     checkAuth = async () => {
-        const jwt = localStorage.getItem('tnp-admin-jwt');
+        const jwt = localStorage.getItem('faculty-jwt');
         if(jwt){
             try{
                 const response = await axiosInstance.get('/users/me', {
@@ -98,7 +98,7 @@ class AuthContextProvider extends Component{
                     loginError: 'Session expired!'
                 }); 
 
-                localStorage.removeItem('tnp-admin-jwt');
+                localStorage.removeItem('faculty-jwt');
             }
         } else {
             this.setState({isLoading: false});

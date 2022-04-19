@@ -1,11 +1,11 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import React, { useContext, useEffect, useState,useRef } from 'react';
 
-// import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 import SignUp from './SignUp';
 
 const Login = () => {
-    // const { login } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
 
     // const formRef = useRef();
 
@@ -40,12 +40,12 @@ const Login = () => {
         console.log(name,email,password,department,isCoordinator)
         console.log(email, password);
 
-        // login({email, password});
+        register({name,email, password,department,isCoordinator});
     }
 
     return(
         <div>
-            <div className='d-flex justify-content-center px-2' style={{marginTop:'10rem'}}>
+            <div className='d-flex justify-content-center px-2' style={{marginTop:'5rem', marginBottom:'10rem'}}>
                 <div style={{width: '400px', maxWidth:'100%'}}>
                     <h2>Register</h2>
                     <Form onSubmit={handleSubmit} className='mt-3'>

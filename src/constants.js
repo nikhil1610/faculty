@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'https://tnp-nsut.herokuapp.com';
+export const BACKEND_URL = 'https://1337-nikhil1610-faculty-fnvcpgmrdeg.ws-us34.gitpod.io';
