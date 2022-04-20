@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import Faculty from './pages/Faculty';
 import FacultyDetails from './pages/FacultyDetails';
 import AuthContextProvider, { AuthContext } from './context/AuthContext';
@@ -19,7 +19,7 @@ function App() {
     <Router>
     <AuthContextProvider>
     <div className="App">
-    <Navbar/>
+    {/* <Navbar/> */}
       <Routes>
         <Route exact path='/' element={<Login/>}/>
         <Route path='/register' element={<SignUp/>}/>

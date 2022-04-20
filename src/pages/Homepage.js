@@ -8,9 +8,10 @@ import Navbar from '../components/Navbar';
 export default function Homepage() {
   const Navigate = useNavigate();
   return (
-    <div className='px-2 mt-4 '>
+    <div>
       <Navbar/>
-      <Row className='d-flex mb-3'>
+    <div className='px-2 mt-4 '>
+      <Row className='d-flex mb-3 mx-0' style={{paddingLeft:"0.75rem",paddingRight:"0.75rem"}}>
         <Col>
         <Card>
         <Card.Body>
@@ -142,7 +143,7 @@ export default function Homepage() {
         </Card>
         </Col>
       </Row>
-
+  </div>
     </div>
   )
 }

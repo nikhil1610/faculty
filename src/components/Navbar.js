@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 // import  from 'bootstrap-icons'
 import { AuthContext } from '../context/AuthContext'
 export default function Navbar() {
-  const {state:{isAuthenticated}} =useContext(AuthContext);
+  // const {state:{isAuthenticated}} =useContext(AuthContext);
 
-  if(!isAuthenticated){
-    return;
-  }
+  // if(!isAuthenticated){
+  //   return;
+  // }
   return (
     <div className='d-flex justify-content-between p-2' style={{backgroundColor:'#020248',color:"white"}}>
       <div className='department'>
