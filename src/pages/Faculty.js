@@ -9,6 +9,7 @@ import {
   } from "react-bootstrap";
   import axiosInstance from '../axiosConfig';
 import '../css/Faculty.css';
+import Navbar from '../components/Navbar';
 
 const Faculty = ()=>{
   const [inputState, setInputState] = useState({
@@ -41,6 +42,8 @@ const Faculty = ()=>{
       };
       const handleSubmit = async (e) => {};
     return (
+      <div>
+        <Navbar/>
         <div className='d-flex justify-content-center align-items-center my-3'>
           <div className='w-75'>
           <div>
@@ -320,6 +323,7 @@ const Faculty = ()=>{
             
           </div>
             
+        </div>
         </div>
     )
 }

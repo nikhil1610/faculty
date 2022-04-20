@@ -3,11 +3,13 @@ import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../css/Homepage.css';
+import Navbar from '../components/Navbar';
 
 export default function Homepage() {
   const Navigate = useNavigate();
   return (
     <div className='px-2 mt-4 '>
+      <Navbar/>
       <Row className='d-flex mb-3'>
         <Col>
         <Card>
