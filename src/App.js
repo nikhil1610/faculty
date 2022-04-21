@@ -10,6 +10,7 @@ import Faculty from './pages/Faculty';
 import FacultyDetails from './pages/FacultyDetails';
 import AuthContextProvider, { AuthContext } from './context/AuthContext';
 import Report from './pages/Report';
+import ReportGenerate from './pages/ReportGenerate';
 
 function App() {
   console.log('authContext' + useContext(AuthContext));
@@ -28,6 +29,7 @@ function App() {
         <Route exact path='/faculty' element={<Faculty/>}/>
         <Route path='/faculty-details' element={<FacultyDetails/>}/>
         <Route path='/report' element={<Report/>}/>
+        <Route path='/report-generate' element={<ReportGenerate/>}/>
      </Routes>
     </div>
     </AuthContextProvider>

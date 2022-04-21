@@ -101,7 +101,7 @@ const Report = () => {
                     <Form onSubmit={handleSubmit} className='mt-3'>
 
                     <Row className="mt-3">
-                <Col xs={12} lg={8} xl={6}>
+                <Col md={12}>
                     <Form.Group>
                         <Form.Label>Select fields to generate the report</Form.Label>
                         {/* <p style={{ fontSize: "0.875rem" }}>
@@ -175,7 +175,9 @@ const Report = () => {
                         </Row> */}
                         <Row className='mt-5'>
                             <Col xs={12}>
+                                <Link to={'/report-generate'} state={{branchesList}}>
                                 <Button style={{width:"100%"}} type='submit'>Generate Report</Button>
+                                </Link>
                             </Col>
                         </Row>
                         {/* <Row className='mt-3'>
