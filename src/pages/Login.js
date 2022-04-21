@@ -1,19 +1,26 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import React, { useContext, useState } from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 // import AuthContextProvider, { AuthContext } from '../context/AuthContext';
 import AuthContextProvider, { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-    console.log(useContext(AuthContext))
+    // console.log(useContext(AuthContext))
+    const {state:{isAuthenticated}} = useContext(AuthContext);
     const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [err,setErr] = useState('');
+    const [loading,setLoading] = useState(false);
 
     // const history= useHistory()
 
+    if(isAuthenticated){
+        navigate("/department");
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,8 +31,23 @@ const Login = () => {
 
         // AuthContextProvider.login({email,password});
 
-        login({email, password});
+        try{
+            setLoading(true);
+            login({email, password});
+            navigate('/department');
+        }catch(err){
+            console.log(err);
+            setErr(err);
+            setLoading(false);
+        }
     }
+
+    if(loading){
+        return(
+            <div>Loading...</div>
+        )
+    }
+
 
     return(
         <div>
@@ -72,6 +94,11 @@ const Login = () => {
                             </Col>
                         </Row>
                     </Form>
+                    {err && (
+                        <div>
+                            Error Logging In.
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

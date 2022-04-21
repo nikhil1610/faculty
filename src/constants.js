@@ -1,1 +1,3 @@
-export const BACKEND_URL = 'https://1337-nikhil1610-faculty-fnvcpgmrdeg.ws-us34.gitpod.io';
+export const BACKEND_URL = 'https://departmental-accrediation.herokuapp.com/api';
+
+// PRODUCTION_URL = 'https://departmental-accrediation.herokuapp.com/';

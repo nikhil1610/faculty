@@ -3,9 +3,11 @@ import React, { useContext, useEffect, useState,useRef } from 'react';
 
 import { AuthContext } from '../context/AuthContext';
 import SignUp from './SignUp';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { register } = useContext(AuthContext);
+    const { register,login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // const formRef = useRef();
 
@@ -18,6 +20,8 @@ const Login = () => {
     const [error,setError] = useState('');
     // const history= useHistory()
 
+    const [loading,setLoading]= useState(false);
+    const[regError, setRegError] = useState('');
 
     useEffect(()=>{
 
@@ -40,9 +44,24 @@ const Login = () => {
         console.log(name,email,password,department,isCoordinator)
         console.log(email, password);
 
-        register({name,email, password,department,isCoordinator});
+        try{
+            setLoading(true);
+            register({name,email, password,department,isCoordinator});
+            login({email,password});
+            navigate("/department");
+        }
+        catch(err){
+            console.log(err);
+            setRegError(err);
+            setLoading(false);
+        }
     }
 
+    if(loading){
+        return(
+            <div>Loading...</div>
+        )
+    }
     return(
         <div>
             <div className='d-flex justify-content-center px-2' style={{marginTop:'5rem', marginBottom:'10rem'}}>
@@ -127,6 +146,13 @@ const Login = () => {
                             </Col>
                         </Row>
                     </Form>
+
+                    {regError && (
+                        <div>
+                            Error in Registering the User. Please try later.
+                        </div>
+                    )}
+
                 </div>
             </div>
         </div>

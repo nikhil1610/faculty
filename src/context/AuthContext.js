@@ -18,6 +18,10 @@ class AuthContextProvider extends Component{
             const response = await axiosInstance.post('/auth/local/', {
                 identifier: email,
                 password
+            },{
+                headers:{
+                    'Content-Type':'application/json',
+                }
             });
             this.setState({
                 isAuthenticated: true,
@@ -45,6 +49,10 @@ class AuthContextProvider extends Component{
             try{
                 await axiosInstance.post('/auth/local/register', {
                     username: name, email, password, department, isCoordinator
+                },{
+                    headers:{
+                        'Content-Type':'application/json',
+                    }
                 });
                 resolve();
             } catch(err){

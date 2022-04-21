@@ -10,6 +10,7 @@ import {
   import axiosInstance from '../axiosConfig';
 import '../css/Faculty.css';
 import Navbar from '../components/Navbar';
+import { fileUpload, fileUploadAndLink } from '../services/fileUpload';
 
 const Faculty = ()=>{
   const [inputState, setInputState] = useState({
@@ -25,6 +26,7 @@ const Faculty = ()=>{
     specialization: "",
     paper_publications: "",
     phd_guidance: "",
+    phd_under_whom: "",
     currently_associated: "",
     leaving_date: "",
     association_mode: "",
@@ -40,7 +42,29 @@ const Faculty = ()=>{
           [e.target.name]: e.target.value,
         });
       };
-      const handleSubmit = async (e) => {};
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        let fileArray = [];
+
+      //   for (let i = 0; i < inputState.resumes.length; i++) {
+      //     let uploadFile = await fileUpload(inputState.resumes[i]);
+      //     fileArray.push(uploadFile.data[0]);
+      //     console.log(fileArray);
+      // }
+
+      try{
+        await axiosInstance.post('/faculties', {
+          ...inputState,
+      },{
+          headers:{
+              'Content-Type':'application/json',
+          }
+      });
+     }catch(err){
+       console.log(err);
+     }
+
+      };
     return (
       <div>
         <Navbar/>
@@ -56,13 +80,13 @@ const Faculty = ()=>{
                 <Row>
                     
                     <Col md={12} className="mb-3">
-                      <Form.Group id="batch">
+                      <Form.Group id="Name">
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                         style={{width:"75%",float: "right",marginRight:"7rem"}}
                           required
                           type="text"
-                          name="batch"
+                          name="Name"
                           value={inputState.Name}
                           onChange={handleChange}
                           placeholder={inputState.Name}
@@ -271,16 +295,16 @@ const Faculty = ()=>{
                       </Form.Group>
                     </Col>
                     <Col md={12} className="mb-3">
-                      <Form.Group id="phd_guidance">
+                      <Form.Group id="phd_under_whom">
                         <Form.Label>Fully receiving PhD during Assesment years</Form.Label>
                         <Form.Control
                           required
                           style={{width:"75%",float: "right",marginRight:"7rem"}}
                           type="text"
-                          name="phd_guidance"
-                          value={inputState.phd_guidance}
+                          name="phd_under_whom"
+                          value={inputState.phd_under_whom}
                           onChange={handleChange}
-                          placeholder={inputState.phd_guidance}
+                          placeholder={inputState.phd_under_whom}
                         />
                       </Form.Group>
                     </Col>
@@ -310,6 +334,26 @@ const Faculty = ()=>{
                             <Form.Check  inline label="Contract" type="radio" name='association_nature'  ></Form.Check>
                             <Form.Check label="Regular" inline type="radio" name='association_nature' ></Form.Check>
                     </Col>
+                    <Col sm={12} className="mb-3">
+                            <Form.Group controlId="resumes" className="mb-3">
+                                <Form.Label>
+                                    Upload Resume
+                                </Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    multiple
+                                    accept=".pdf"
+                                    name="resumes"
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        setInputState({
+                                            ...inputState,
+                                            ["resumes"]: e.target.files,
+                                        });
+                                    }}
+                                />
+                            </Form.Group>
+                        </Col>
 
                   </Row>
             </div>

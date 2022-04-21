@@ -1,0 +1,14 @@
+.dropdown-toggle{
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+.dropdown-toggle::after{
+    visibility: hidden;
+    border: none;
+}
+.btn-primary{
+    /* background: transparent!important;
+    border: none!important;
+    box-shadow: none!important; */
+}
