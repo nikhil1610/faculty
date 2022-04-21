@@ -44,7 +44,7 @@ return(
         <th>S.No</th>
         {fields.map((value,index)=>(
             // {console.log(value.branch+index)}
-           <th>{value.branch}</th>
+           <th>{value}</th>
         ))}
       {/* <th>First Name</th>
       <th>Last Name</th>
@@ -55,9 +55,13 @@ return(
       {console.log(faculties)}
       {faculties && faculties.map((faculty,index)=>(
     <tr>
-        <td>{index}</td>
+        <td>{index+1}</td>
         {fields.map((field,index)=>(
-            <td>{faculty.field.branch}</td>
+            <>
+            {/* {console.log('logging')}
+            {console.log(faculty.attributes[field])} */}
+            <td>{faculty.attributes[field]}</td>
+            </>
         ))}
         {/* <td>1</td>
         <td>Mark</td>

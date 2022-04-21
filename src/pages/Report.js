@@ -21,7 +21,7 @@ const Report = () => {
         "highest_degree",
         "institution",
         "designation",
-        "specializaton",
+        "specialization",
         "designation_date",
         "association_date",
         "joining_date",
@@ -119,7 +119,7 @@ const Report = () => {
                             onSelect={(newValue) => {
                                 setBranchesList((current) => [
                                     ...current,
-                                    { branch: newValue },
+                                    newValue,
                                 ]);
                                 setSuggestFields(
                                     suggestFields.filter(
@@ -136,7 +136,7 @@ const Report = () => {
                     <div className="mt-1">
                         {branchesList.map((branch, key) => (
                             <li key={key}>
-                                {branch.branch}
+                                {branch}
                                 <span
                                     className="ms-3"
                                     onClick={() => deleteBranch(key)}
