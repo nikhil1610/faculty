@@ -1,0 +1,27 @@
+.container{
+    position: relative;
+    padding-left: 0px;
+}
+
+.suggestion-box{
+    position: absolute;
+    background-color: white;
+    margin-top: 5px;
+    list-style-type: none;
+    min-width: 200px;
+    box-shadow: 1px 1px 5px rgb(218, 218, 218);
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.suggestion-box > li{
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+
+.suggestion-box > li:hover{
+    background-color: rgb(212, 212, 212);
+}

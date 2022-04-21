@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {
     Col,
     Row,
@@ -11,8 +11,10 @@ import {
 import '../css/Faculty.css';
 import Navbar from '../components/Navbar';
 import { fileUpload, fileUploadAndLink } from '../services/fileUpload';
+import { AuthContext } from '../context/AuthContext';
 
 const Faculty = ()=>{
+  const {state} = useContext(AuthContext);
   const [inputState, setInputState] = useState({
     Name: "",
     highest_degree: "",
@@ -58,6 +60,8 @@ const Faculty = ()=>{
       },{
           headers:{
               'Content-Type':'application/json',
+              Authorization:
+              `Bearer ${state.jwt}`,  
           }
       });
      }catch(err){
