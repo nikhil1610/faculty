@@ -4,14 +4,15 @@
   "info": {
     "singularName": "faculty",
     "pluralName": "faculties",
-    "displayName": "faculty"
+    "displayName": "faculty",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "Name": {
       "type": "string",
       "required": true
     },
@@ -30,10 +31,34 @@
     "specialization": {
       "type": "string"
     },
-    "designated": {
+    "designation_date": {
       "type": "date"
     },
-    "joining": {
+    "joining_date": {
+      "type": "date"
+    },
+    "association_instituition": {
+      "type": "string"
+    },
+    "paper_publications": {
+      "type": "string"
+    },
+    "phd_guidance": {
+      "type": "string"
+    },
+    "phd_under_whom": {
+      "type": "string"
+    },
+    "currently_associated": {
+      "type": "string"
+    },
+    "association_mode": {
+      "type": "string"
+    },
+    "leaving_date": {
+      "type": "date"
+    },
+    "completion_year": {
       "type": "date"
     }
   }
