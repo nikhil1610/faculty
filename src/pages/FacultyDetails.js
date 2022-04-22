@@ -115,7 +115,7 @@ const FacultyDetails = ()=>{
         <div className='d-flex justify-content-center align-items-center my-3'>
           <div className='w-75'>
           <div>
-                <h2>Faculty List</h2>
+                <h2>Faculty Details</h2>
             </div>
               
                               

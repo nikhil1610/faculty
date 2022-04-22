@@ -29,13 +29,20 @@ const Faculty = ()=>{
     paper_publications: "",
     phd_guidance: "",
     phd_under_whom: "",
-    currently_associated: "",
+    // currently_associated: "",
     leaving_date: "",
-    association_mode: "",
+    // association_mode: "",
     // resumes: "",
     
   });
   const [msg, setMessage] = useState('');
+  const [resume, setResume] = useState({
+    file:null,
+    value:""
+});
+  const [curAssociated, setCurAssociated] = useState('');
+  const [associationMode, setAssociationMode] = useState('');
+
       // const [student, setStudent] = useState([]);
     
       const handleChange = (e) => {
@@ -47,14 +54,17 @@ const Faculty = ()=>{
       };
       const handleSubmit = async (e) => {
         e.preventDefault();
-        let fileArray = [];
         console.log(inputState);
 
-      //   for (let i = 0; i < inputState.resumes.length; i++) {
-      //     let uploadFile = await fileUpload(inputState.resumes[i]);
-      //     fileArray.push(uploadFile.data[0]);
-      //     console.log(fileArray);
-      // }
+        // if(resume.file){
+        //   try{
+        //     const fileUploadRes = await fileUpload(resume.file);
+        //   }catch(err)
+        //   {
+        //      console.log(err,err.response);
+        //   }
+        // }
+
 
       try{
         const response = await axiosInstance.post('/faculties', {
@@ -72,9 +82,9 @@ const Faculty = ()=>{
             paper_publications: inputState.paper_publications,
             phd_guidance: inputState.phd_guidance,
             phd_under_whom: inputState.phd_under_whom,
-            currently_associated: inputState.currently_associated,
+            currently_associated: curAssociated,
             leaving_date: inputState.leaving_date,
-            association_mode: inputState.association_mode,
+            association_mode: associationMode,
             association_instituition:inputState.association_institution  
           }},{
           headers:{
@@ -92,6 +102,14 @@ const Faculty = ()=>{
      }
 
       };
+
+      const fileHandler = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setResume({ file, value: e.target.value });
+    };
+
     return (
       <div>
         <Navbar/>
@@ -340,8 +358,8 @@ const Faculty = ()=>{
                     <Col md={12} className="mb-3">
                     <Col xs={12}>
                             <Form.Label style={{marginRight:"1.6rem"}}>Currently Associated</Form.Label>
-                            <Form.Check  inline label="Yes" type="radio" name='currently_associated'  ></Form.Check>
-                            <Form.Check inline label="No" type="radio" name='currently_associated' ></Form.Check>
+                            <Form.Check  inline label="Yes" type="radio" name='currently_associated' onClick={()=>setCurAssociated('Yes')}  ></Form.Check>
+                            <Form.Check inline label="No" type="radio" name='currently_associated' onClick={()=>setCurAssociated('No')} ></Form.Check>
                     </Col>
                       <Form.Group id="leaving_date">
                         <Form.Label>Date of leaving</Form.Label>
@@ -358,27 +376,33 @@ const Faculty = ()=>{
                     </Col>
                     <Col xs={12}>
                             <Form.Label style={{marginRight:"1.6rem"}}>Nature of Association</Form.Label>
-                            <Form.Check  inline label="Contract" type="radio" name='association_nature'  ></Form.Check>
-                            <Form.Check label="Regular" inline type="radio" name='association_nature' ></Form.Check>
+                            <Form.Check  inline label="Contract" type="radio" name='association_nature' onClick={()=>setAssociationMode('Contract')} ></Form.Check>
+                            <Form.Check label="Regular" inline type="radio" name='association_nature' onClick={()=>setAssociationMode('Regular')}></Form.Check>
                     </Col>
                     <Col sm={12} className="mb-3">
-                            <Form.Group controlId="resumes" className="mb-3">
-                                <Form.Label>
-                                    Upload Resume
-                                </Form.Label>
+                    <Form.Group>
+                                <Form.Label>Resume</Form.Label>
                                 <Form.Control
                                     type="file"
-                                    multiple
                                     accept=".pdf"
-                                    name="resumes"
-                                    onChange={(e) => {
-                                        e.preventDefault();
-                                        setInputState({
-                                            ...inputState,
-                                            ["resumes"]: e.target.files,
-                                        });
-                                    }}
+                                    value={resume.value}
+                                    onChange={fileHandler}
                                 />
+                                {resume.file && (
+                                    <Button
+                                        className="mt-2"
+                                        size="sm"
+                                        variant="outline-danger"
+                                        onClick={() =>
+                                            setResume({
+                                                file: null,
+                                                value: "",
+                                            })
+                                        }
+                                    >
+                                        Clear
+                                    </Button>
+                                )}
                             </Form.Group>
                         </Col>
 

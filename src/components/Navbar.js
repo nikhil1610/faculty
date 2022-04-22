@@ -12,7 +12,7 @@ export default function Navbar() {
   const { logout } = useContext(AuthContext);
 
   const navigate = useNavigate();
-  console.log(userDetails);
+  // console.log(userDetails);
   // if(!isAuthenticated){
   //   return;
   // }
@@ -31,7 +31,7 @@ export default function Navbar() {
       console.log(err);
       navigate("/");
     }
-    console.log('logout user');
+    // console.log('logout user');
   }
   return (
     <div className='d-flex justify-content-between p-2' style={{backgroundColor:'#020248',color:"white"}}>
