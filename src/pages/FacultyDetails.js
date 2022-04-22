@@ -8,9 +8,9 @@ import {
     InputGroup,
   } from "react-bootstrap";
   import axiosInstance from '../axiosConfig';
+  import qs from "qs";
 import '../css/Faculty.css';
 import Navbar from '../components/Navbar';
-import { fileUpload, fileUploadAndLink } from '../services/fileUpload';
 import { AuthContext } from '../context/AuthContext';
 
 const FacultyDetails = ()=>{
@@ -39,7 +39,15 @@ const FacultyDetails = ()=>{
     
       useEffect(()=>{
         // const currentYear = new Date().getFullYear();
-        axiosInstance.get(`/faculties/?_sort=createdAt:desc&_start=0&_limit=1`,{
+        // ?_limit=2&_sort=updatedAt:DESC&_start=0
+        const query = qs.stringify({
+          sort:['createdAt:desc'],
+          pagination:{
+            start:0,
+            limit:1
+          }
+        })
+        axiosInstance.get(`/faculties?${query}`,{
         headers: {
           Authorization:
             `Bearer ${state.jwt}`,
@@ -47,14 +55,15 @@ const FacultyDetails = ()=>{
       }
       )
         .then((response)=>{
-          console.log('response'+response)
+          console.log('response');
+          console.log(response.data.data);
           console.log(response.data.data[0].attributes);
           setInputState({
             Name: response.data.data[0].attributes.Name,
             highest_degree: response.data.data[0].attributes.highest_degree,
             institution: response.data.data[0].attributes.institution,
             completion_year: response.data.data[0].attributes.completion_year,
-            association_institution: response.data.data[0].attributes.association_institution,
+            association_institution: response.data.data[0].attributes.association_instituition,
             designation: response.data.data[0].attributes.designation,
             designation_date: response.data.data[0].attributes.designation_date,
             joining_date: response.data.data[0].attributes.joining_date,
@@ -76,7 +85,7 @@ const FacultyDetails = ()=>{
         })
     },[state]); 
 
-    console.log('inputState'+ inputState)
+    // console.log('inputState'+ inputState)
 
 
       const handleChange = (e) => {
@@ -88,25 +97,25 @@ const FacultyDetails = ()=>{
       };
       const handleSubmit = async (e) => {
         e.preventDefault();
-        let fileArray = [];
+    //     let fileArray = [];
 
-      //   for (let i = 0; i < inputState.resumes.length; i++) {
-      //     let uploadFile = await fileUpload(inputState.resumes[i]);
-      //     fileArray.push(uploadFile.data[0]);
-      //     console.log(fileArray);
-      // }
+    //   //   for (let i = 0; i < inputState.resumes.length; i++) {
+    //   //     let uploadFile = await fileUpload(inputState.resumes[i]);
+    //   //     fileArray.push(uploadFile.data[0]);
+    //   //     console.log(fileArray);
+    //   // }
 
-      try{
-        await axiosInstance.post('/faculties', {
-          ...inputState,
-      },{
-          headers:{
-              'Content-Type':'application/json',
-          }
-      });
-     }catch(err){
-       console.log(err);
-     }
+    //   try{
+    //     await axiosInstance.post('/faculties', {
+    //       ...inputState,
+    //   },{
+    //       headers:{
+    //           'Content-Type':'application/json',
+    //       }
+    //   });
+    //  }catch(err){
+    //    console.log(err);
+    //  }
 
       };
     return (
@@ -357,8 +366,8 @@ const FacultyDetails = ()=>{
                     <Col md={12} className="mb-3">
                     <Col xs={12}>
                             <Form.Label style={{marginRight:"1.6rem"}}>Currently Associated</Form.Label>
-                            <Form.Check  inline label="Yes" type="radio" name='currently_associated'  ></Form.Check>
-                            <Form.Check inline label="No" type="radio" name='currently_associated' ></Form.Check>
+                            <Form.Check  inline label="Yes" type="radio" name='currently_associated' checked={inputState.currently_associated === "Yes"}   ></Form.Check>
+                            <Form.Check inline label="No" type="radio" name='currently_associated' checked={inputState.currently_associated === "No"} ></Form.Check>
                     </Col>
                       <Form.Group id="leaving_date">
                         <Form.Label>Date of leaving</Form.Label>
@@ -375,8 +384,8 @@ const FacultyDetails = ()=>{
                     </Col>
                     <Col xs={12}>
                             <Form.Label style={{marginRight:"1.6rem"}}>Nature of Association</Form.Label>
-                            <Form.Check  inline label="Contract" type="radio" name='association_nature'  ></Form.Check>
-                            <Form.Check label="Regular" inline type="radio" name='association_nature' ></Form.Check>
+                            <Form.Check  inline checked={inputState.association_mode === "Contract"} label="Contract" type="radio" name='association_nature'  ></Form.Check>
+                            <Form.Check label="Regular" inline checked={inputState.association_mode === "Regular"} type="radio" name='association_nature' ></Form.Check>
                     </Col>
                     <Col sm={12} className="mb-3">
                             <Form.Group controlId="resumes" className="mb-3">
