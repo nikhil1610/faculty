@@ -32,9 +32,10 @@ const Faculty = ()=>{
     currently_associated: "",
     leaving_date: "",
     association_mode: "",
-    resumes: "",
+    // resumes: "",
     
   });
+  const [msg, setMessage] = useState('');
       // const [student, setStudent] = useState([]);
     
       const handleChange = (e) => {
@@ -47,6 +48,7 @@ const Faculty = ()=>{
       const handleSubmit = async (e) => {
         e.preventDefault();
         let fileArray = [];
+        console.log(inputState);
 
       //   for (let i = 0; i < inputState.resumes.length; i++) {
       //     let uploadFile = await fileUpload(inputState.resumes[i]);
@@ -55,17 +57,38 @@ const Faculty = ()=>{
       // }
 
       try{
-        await axiosInstance.post('/faculties', {
-          ...inputState,
-      },{
+        const response = await axiosInstance.post('/faculties', {
+          data:{
+            Name: inputState.Name,
+            highest_degree: inputState.highest_degree,
+            institution: inputState.institution,
+            completion_year: inputState.completion_year,
+            association_institution: inputState.association_institution,
+            designation: inputState.designation,
+            designation_date: inputState.designation_date,
+            joining_date: inputState.joining_date,
+            department: inputState.department,
+            specialization: inputState.specialization,
+            paper_publications: inputState.paper_publications,
+            phd_guidance: inputState.phd_guidance,
+            phd_under_whom: inputState.phd_under_whom,
+            currently_associated: inputState.currently_associated,
+            leaving_date: inputState.leaving_date,
+            association_mode: inputState.association_mode,
+            association_instituition:inputState.association_institution  
+          }},{
           headers:{
               'Content-Type':'application/json',
               Authorization:
               `Bearer ${state.jwt}`,  
           }
       });
+
+      console.log(response.data);
+      setMessage('Faculty information added.');
      }catch(err){
        console.log(err);
+       setMessage('Error in Adding Faculty details.');
      }
 
       };
@@ -367,6 +390,10 @@ const Faculty = ()=>{
                     </Col>
                   </Row>
           </Form>
+
+          {msg && (
+            <div className='mt-2 mb-3' > <h6>{msg}</h6></div>
+          )}
 
             
           </div>

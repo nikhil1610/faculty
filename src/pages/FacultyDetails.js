@@ -48,24 +48,24 @@ const FacultyDetails = ()=>{
       )
         .then((response)=>{
           console.log('response'+response)
-          console.log(response.data);
+          console.log(response.data.data[0].attributes);
           setInputState({
-            Name: response.data.Name,
-            highest_degree: response.data.highest_degree,
-            institution: response.data.institution,
-            completion_year: response.data.completion_year,
-            association_institution: response.data.association_institution,
-            designation: response.data.designation,
-            designation_date: response.data.designation_date,
-            joining_date: response.data.joining_date,
-            department: response.data.department,
-            specialization: response.data.specialization,
-            paper_publications: response.data.paper_publications,
-            phd_guidance: response.data.phd_guidance,
-            phd_under_whom: response.data.phd_under_whom,
-            currently_associated: response.data.currently_associated,
-            leaving_date: response.data.leaving_date,
-            association_mode: response.data.association_mode,
+            Name: response.data.data[0].attributes.Name,
+            highest_degree: response.data.data[0].attributes.highest_degree,
+            institution: response.data.data[0].attributes.institution,
+            completion_year: response.data.data[0].attributes.completion_year,
+            association_institution: response.data.data[0].attributes.association_institution,
+            designation: response.data.data[0].attributes.designation,
+            designation_date: response.data.data[0].attributes.designation_date,
+            joining_date: response.data.data[0].attributes.joining_date,
+            department: response.data.data[0].attributes.department,
+            specialization: response.data.data[0].attributes.specialization,
+            paper_publications: response.data.data[0].attributes.paper_publications,
+            phd_guidance: response.data.data[0].attributes.phd_guidance,
+            phd_under_whom: response.data.data[0].attributes.phd_under_whom,
+            currently_associated: response.data.data[0].attributes.currently_associated,
+            leaving_date: response.data.data[0].attributes.leaving_date,
+            association_mode: response.data.data[0].attributes.association_mode,
             resumes: response.data.resumes,
         
           });
