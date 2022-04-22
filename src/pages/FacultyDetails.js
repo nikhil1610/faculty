@@ -39,7 +39,7 @@ const FacultyDetails = ()=>{
     
       useEffect(()=>{
         // const currentYear = new Date().getFullYear();
-        axiosInstance.get(`/faculties/`,{
+        axiosInstance.get(`/faculties/?_sort=createdAt:desc&_start=0&_limit=1`,{
         headers: {
           Authorization:
             `Bearer ${state.jwt}`,
@@ -401,11 +401,11 @@ const FacultyDetails = ()=>{
 
                   </Row>
             </div>
-                  <Row>
+                  {/* <Row>
                     <Col>
                       <Button variant='primary' className='w-100' style={{marginTop:"2rem"}} type='submit'>Submit</Button>
                     </Col>
-                  </Row>
+                  </Row> */}
           </Form>
 
             
