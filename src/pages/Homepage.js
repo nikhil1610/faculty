@@ -81,7 +81,7 @@ export default function Homepage() {
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link onClick={()=>Navigate('/faculty')}>OPEN CRITERIAN PAGE</Card.Link>
-          {state.isAuthenticated && (
+          {state.isAuthenticated && state.userDetails.isCoordinator === "Yes" && (
                       <Card.Link onClick={()=>Navigate('/report')}>Generate Report</Card.Link>
           )}
           <Card.Link onClick={()=>Navigate('/faculty-details')}>VIEW CRITERIAN DETAILS</Card.Link>

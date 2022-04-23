@@ -47,13 +47,22 @@ class AuthContextProvider extends Component{
     register = async ({name,email, password,department,isCoordinator}) => {
         return new Promise(async (resolve, reject) => {
             try{
-                await axiosInstance.post('/auth/local/register', {
+                const response = await axiosInstance.post('/auth/local/register', {
                     username: name, email, password, department, isCoordinator
                 },{
                     headers:{
                         'Content-Type':'application/json',
                     }
                 });
+                this.setState({
+                    isAuthenticated: true,
+                    isLoading: false,
+                    userDetails: response.data.user,
+                    jwt: response.data.jwt,
+                    loginError: null
+                }); 
+    
+                localStorage.setItem('faculty-jwt', response.data.jwt);    
                 resolve();
             } catch(err){
                 console.log(err, err.response);

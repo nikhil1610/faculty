@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register,login } = useContext(AuthContext);
+    const {state:{isAuthenticated}} = useContext(AuthContext);
     const navigate = useNavigate();
 
     // const formRef = useRef();
@@ -46,15 +47,32 @@ const Login = () => {
 
         try{
             setLoading(true);
-            register({name,email, password,department,isCoordinator});
-            login({email,password});
-            navigate("/department");
+            register({name,email, password,department,isCoordinator})
+            .then((response)=>{
+                console.log(response);
+                console.log(response.data);
+            })
+            .catch((err)=>{
+                console.log(err);
+                setRegError(err);
+            });
+            // login({email,password});
+            // if(regError){
+            //     return;
+            // }
+            // navigate("/department");
+            setLoading(false);
         }
         catch(err){
             console.log(err);
             setRegError(err);
             setLoading(false);
         }
+    }
+
+    if(isAuthenticated)
+    {
+        navigate("/department");
     }
 
     if(loading){

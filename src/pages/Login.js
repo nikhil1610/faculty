@@ -34,7 +34,8 @@ const Login = () => {
         try{
             setLoading(true);
             login({email, password});
-            navigate('/department');
+            setLoading(false);
+            // navigate('/department');
         }catch(err){
             console.log(err);
             setErr(err);
