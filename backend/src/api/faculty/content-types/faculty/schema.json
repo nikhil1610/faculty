@@ -37,16 +37,13 @@
     "joining_date": {
       "type": "date"
     },
-    "association_instituition": {
+    "association_institution": {
       "type": "string"
     },
     "paper_publications": {
       "type": "string"
     },
-    "phd_guidance": {
-      "type": "string"
-    },
-    "phd_under_whom": {
+    "phd_assess_yr": {
       "type": "string"
     },
     "currently_associated": {
@@ -60,6 +57,19 @@
     },
     "completion_year": {
       "type": "date"
+    },
+    "phd_guidance": {
+      "type": "biginteger"
+    },
+    "resume": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
