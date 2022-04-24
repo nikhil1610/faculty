@@ -11,7 +11,7 @@ const ReportGenerate = () => {
     const {state} = useContext(AuthContext);
     const [faculties,setFaculties] = useState([]);
 
-    console.log(location.state.branchesList);
+    // console.log(location.state.branchesList);
     const fields = location.state.branchesList;
 
     useEffect(()=>{
@@ -23,7 +23,7 @@ const ReportGenerate = () => {
           }
           )
             .then((response)=>{
-                console.log(response.data);
+                // console.log(response.data);
                 setFaculties(response.data.data);
             }
             )
@@ -52,7 +52,7 @@ return(
     </tr>
   </thead>
   <tbody>
-      {console.log(faculties)}
+      {/* {console.log(faculties)} */}
       {faculties && faculties.map((faculty,index)=>(
     <tr>
         <td>{index+1}</td>

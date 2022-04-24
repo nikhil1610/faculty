@@ -23,15 +23,14 @@ const Report = () => {
         "designation",
         "specialization",
         "designation_date",
-        "association_date",
         "joining_date",
         "association_institution",
         "paper_publications",
         "phd_guidance",
-        "phd_under_whom",
+        "phd_assess_yr",
         "currently_associated",
         "association_mode",
-        "leaving_mode",
+        "leaving_date",
         "completion_year"
     ]);
     const [fieldSelected, setFieldSelected] = useState("");

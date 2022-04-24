@@ -28,11 +28,11 @@ const Faculty = ()=>{
     specialization: "",
     paper_publications: "",
     phd_guidance: "",
-    phd_under_whom: "",
+    phd_assess_yr: "",
     // currently_associated: "",
     leaving_date: "",
     // association_mode: "",
-    // resumes: "",
+    resume: "",
     
   });
   const [msg, setMessage] = useState('');
@@ -54,17 +54,39 @@ const Faculty = ()=>{
       };
       const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputState);
+        // console.log(inputState);
 
-        // if(resume.file){
-        //   try{
-        //     const fileUploadRes = await fileUpload(resume.file);
-        //   }catch(err)
-        //   {
-        //      console.log(err,err.response);
-        //   }
-        // }
+        if(resume.file){
+          try{
+            const fileUploadRes = await fileUpload(resume.file);
+            inputState.resume = fileUploadRes.data[0];
+          }catch(err)
+          {
+             console.log(err,err.response);
+          }
+        }
 
+        // console.log({
+        //   Name: inputState.Name,
+        //   highest_degree: inputState.highest_degree,
+        //   institution: inputState.institution,
+        //   completion_year: inputState.completion_year,
+        //   association_institution: inputState.association_institution,
+        //   designation: inputState.designation,
+        //   designation_date: inputState.designation_date,
+        //   joining_date: inputState.joining_date,
+        //   department: inputState.department,
+        //   specialization: inputState.specialization,
+        //   paper_publications: inputState.paper_publications,
+        //   phd_guidance: inputState.phd_guidance,
+        //   phd_assess_yr: inputState.phd_assess_yr,
+        //   currently_associated: curAssociated,
+        //   leaving_date: inputState.leaving_date? inputState.leaving_date : undefined,
+        //   association_mode: associationMode,
+        //   association_instituition:inputState.association_institution,
+        //   resume:inputState.resume
+
+        // });
 
       try{
         const response = await axiosInstance.post('/faculties', {
@@ -81,20 +103,23 @@ const Faculty = ()=>{
             specialization: inputState.specialization,
             paper_publications: inputState.paper_publications,
             phd_guidance: inputState.phd_guidance,
-            phd_under_whom: inputState.phd_under_whom,
+            phd_assess_yr: inputState.phd_assess_yr,
             currently_associated: curAssociated,
-            leaving_date: inputState.leaving_date,
+            leaving_date: inputState.leaving_date? inputState.leaving_date : undefined,
             association_mode: associationMode,
-            association_instituition:inputState.association_institution  
-          }},{
+            association_instituition:inputState.association_institution,
+            resume:inputState.resume
+
+          }
+        },{
           headers:{
-              'Content-Type':'application/json',
+              // 'Content-Type':'application/json',
               Authorization:
               `Bearer ${state.jwt}`,  
           }
       });
 
-      console.log(response.data);
+      // console.log(response.data);
       setMessage('Faculty information added.');
      }catch(err){
        console.log(err);
@@ -331,7 +356,7 @@ const Faculty = ()=>{
                         <Form.Control
                           required
                           style={{width:"75%",float: "right",marginRight:"7rem"}}
-                          type="text"
+                          type="number"
                           name="phd_guidance"
                           value={inputState.phd_guidance}
                           onChange={handleChange}
@@ -340,16 +365,16 @@ const Faculty = ()=>{
                       </Form.Group>
                     </Col>
                     <Col md={12} className="mb-3">
-                      <Form.Group id="phd_under_whom">
+                      <Form.Group id="phd_assess_yr">
                         <Form.Label>Fully receiving PhD during Assesment years</Form.Label>
                         <Form.Control
                           required
                           style={{width:"75%",float: "right",marginRight:"7rem"}}
                           type="text"
-                          name="phd_under_whom"
-                          value={inputState.phd_under_whom}
+                          name="phd_assess_yr"
+                          value={inputState.phd_assess_yr}
                           onChange={handleChange}
-                          placeholder={inputState.phd_under_whom}
+                          placeholder={inputState.phd_assess_yr}
                         />
                       </Form.Group>
                     </Col>
@@ -361,6 +386,7 @@ const Faculty = ()=>{
                             <Form.Check  inline label="Yes" type="radio" name='currently_associated' onClick={()=>setCurAssociated('Yes')}  ></Form.Check>
                             <Form.Check inline label="No" type="radio" name='currently_associated' onClick={()=>setCurAssociated('No')} ></Form.Check>
                     </Col>
+                    {curAssociated === "No" && (
                       <Form.Group id="leaving_date">
                         <Form.Label>Date of leaving</Form.Label>
                         <Form.Control
@@ -373,6 +399,8 @@ const Faculty = ()=>{
                           placeholder={inputState.leaving_date}
                         />
                       </Form.Group>
+                      )
+                      }
                     </Col>
                     <Col xs={12}>
                             <Form.Label style={{marginRight:"1.6rem"}}>Nature of Association</Form.Label>

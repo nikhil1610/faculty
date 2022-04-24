@@ -42,15 +42,15 @@ const Login = () => {
         if(!name || !email || !password)
             return;
 
-        console.log(name,email,password,department,isCoordinator)
-        console.log(email, password);
+        // console.log(name,email,password,department,isCoordinator)
+        // console.log(email, password);
 
         try{
             setLoading(true);
             register({name,email, password,department,isCoordinator})
             .then((response)=>{
-                console.log(response);
-                console.log(response.data);
+                // console.log(response);
+                // console.log(response.data);
             })
             .catch((err)=>{
                 console.log(err);

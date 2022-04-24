@@ -28,7 +28,7 @@ const FacultyDetails = ()=>{
     specialization: "",
     paper_publications: "",
     phd_guidance: "",
-    phd_under_whom: "",
+    phd_assess_yr: "",
     currently_associated: "",
     leaving_date: "",
     association_mode: "",
@@ -55,15 +55,15 @@ const FacultyDetails = ()=>{
       }
       )
         .then((response)=>{
-          console.log('response');
-          console.log(response.data.data);
-          console.log(response.data.data[0].attributes);
+          // console.log('response');
+          // console.log(response.data.data);
+          // console.log(response.data.data[0].attributes);
           setInputState({
             Name: response.data.data[0].attributes.Name,
             highest_degree: response.data.data[0].attributes.highest_degree,
             institution: response.data.data[0].attributes.institution,
             completion_year: response.data.data[0].attributes.completion_year,
-            association_institution: response.data.data[0].attributes.association_instituition,
+            association_institution: response.data.data[0].attributes.association_institution,
             designation: response.data.data[0].attributes.designation,
             designation_date: response.data.data[0].attributes.designation_date,
             joining_date: response.data.data[0].attributes.joining_date,
@@ -71,11 +71,11 @@ const FacultyDetails = ()=>{
             specialization: response.data.data[0].attributes.specialization,
             paper_publications: response.data.data[0].attributes.paper_publications,
             phd_guidance: response.data.data[0].attributes.phd_guidance,
-            phd_under_whom: response.data.data[0].attributes.phd_under_whom,
+            phd_assess_yr: response.data.data[0].attributes.phd_assess_yr,
             currently_associated: response.data.data[0].attributes.currently_associated,
             leaving_date: response.data.data[0].attributes.leaving_date,
             association_mode: response.data.data[0].attributes.association_mode,
-            resumes: response.data.resumes,
+            resume: response.data.data[0].attributes.resume,
         
           });
           
@@ -348,16 +348,16 @@ const FacultyDetails = ()=>{
                       </Form.Group>
                     </Col>
                     <Col md={12} className="mb-3">
-                      <Form.Group id="phd_under_whom">
+                      <Form.Group id="phd_assess_yr">
                         <Form.Label>Fully receiving PhD during Assesment years</Form.Label>
                         <Form.Control
                           required
                           style={{width:"75%",float: "right",marginRight:"7rem"}}
                           type="text"
-                          name="phd_under_whom"
-                          value={inputState.phd_under_whom}
+                          name="phd_assess_yr"
+                          value={inputState.phd_assess_yr}
                           onChange={handleChange}
-                          placeholder={inputState.phd_under_whom}
+                          placeholder={inputState.phd_assess_yr}
                         />
                       </Form.Group>
                     </Col>
@@ -369,6 +369,7 @@ const FacultyDetails = ()=>{
                             <Form.Check  inline label="Yes" type="radio" name='currently_associated' checked={inputState.currently_associated === "Yes"}   ></Form.Check>
                             <Form.Check inline label="No" type="radio" name='currently_associated' checked={inputState.currently_associated === "No"} ></Form.Check>
                     </Col>
+                    {inputState.currently_associated === "No" && (
                       <Form.Group id="leaving_date">
                         <Form.Label>Date of leaving</Form.Label>
                         <Form.Control
@@ -381,16 +382,17 @@ const FacultyDetails = ()=>{
                           placeholder={inputState.leaving_date}
                         />
                       </Form.Group>
+                      )}
                     </Col>
                     <Col xs={12}>
                             <Form.Label style={{marginRight:"1.6rem"}}>Nature of Association</Form.Label>
                             <Form.Check  inline checked={inputState.association_mode === "Contract"} label="Contract" type="radio" name='association_nature'  ></Form.Check>
                             <Form.Check label="Regular" inline checked={inputState.association_mode === "Regular"} type="radio" name='association_nature' ></Form.Check>
                     </Col>
-                    <Col sm={12} className="mb-3">
+                    {/* <Col sm={12} className="mb-3">
                             <Form.Group controlId="resumes" className="mb-3">
                                 <Form.Label>
-                                    Upload Resume
+                                    Resume
                                 </Form.Label>
                                 <Form.Control
                                     type="file"
@@ -406,7 +408,7 @@ const FacultyDetails = ()=>{
                                     }}
                                 />
                             </Form.Group>
-                        </Col>
+                        </Col> */}
 
                   </Row>
             </div>
