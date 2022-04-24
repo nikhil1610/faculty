@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axiosInstance from '../axiosConfig';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 import {Table} from 'react-bootstrap'
 import { AuthContext } from '../context/AuthContext';
@@ -38,7 +39,15 @@ return(
         <div className='px-3'>
             <h3 style={{textAlign:"center"}}>Generated Report</h3>
 <div style={{overflowX:"scroll"}}>
- <Table striped bordered hover>
+  
+      <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="download-table-xls-button mb-2 btn btn-success"
+        table="table-to-xls"
+        filename="facultyReport"
+        sheet="facultyReport"
+        buttonText="Download as XLS"/>
+ <Table id='table-to-xls' striped bordered hover>
   <thead>
     <tr>
         <th>S.No</th>
