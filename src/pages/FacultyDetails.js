@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axiosInstance from '../axiosConfig';
+import qs from "qs";
 
 import {Table} from 'react-bootstrap'
 import { AuthContext } from '../context/AuthContext';
@@ -32,7 +33,10 @@ const FacultyDetails = () => {
     // console.log(location.state.branchesList);
 
     useEffect(()=>{
-        axiosInstance.get(`/faculties/`,{
+      const query = qs.stringify({
+        sort:['createdAt:desc'],
+      })
+        axiosInstance.get(`/faculties?${query}`,{
             headers: {
               Authorization:
                 `Bearer ${state.jwt}`,
