@@ -18,12 +18,14 @@ export default function Homepage() {
         <Card>
         <Card.Body>
           <Card.Title>Criteria 1</Card.Title>
+          <div className='alignment'>
           <Card.Text>
             Vision, Mission and Program Educational Objectives
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
@@ -32,12 +34,14 @@ export default function Homepage() {
         <Card style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 2</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Program Curriculum and Teaching Learning Process
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
@@ -46,12 +50,14 @@ export default function Homepage() {
         <Card style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 3</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Course Outcomes and Program Outcomes
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
@@ -60,12 +66,14 @@ export default function Homepage() {
         <Card  style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 4</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Student Performance
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
@@ -76,8 +84,9 @@ export default function Homepage() {
         <Card style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 5</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Faculty Information and Contribution
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link onClick={()=>Navigate('/faculty')}>OPEN CRITERIAN PAGE</Card.Link>
@@ -86,6 +95,7 @@ export default function Homepage() {
           )}
           <Card.Link onClick={()=>Navigate('/faculty-details')}>VIEW CRITERIAN DETAILS</Card.Link>
           </div>
+          </div>
         </Card.Body>
         </Card>
         </Col>
@@ -93,12 +103,14 @@ export default function Homepage() {
         <Card style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 6</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Facilities and Technical Support
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
@@ -107,12 +119,14 @@ export default function Homepage() {
         <Card  style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 7</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Continuous Improvement
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
@@ -121,28 +135,48 @@ export default function Homepage() {
         <Card style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 8</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            First Year Academics
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>
         </Col>
       {/* </Row> */}
       {/* <Row> */}
-        <Col>
+        <Col style={{maxWidth:'327.25px'}}>
         <Card style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Criteria 9</Card.Title>
+          <div className='alignment'>
           <Card.Text>
-            Vision, Mission and Program Educational Objectives
+            Student Support Systems
           </Card.Text>
           <div className='d-flex justify-content-between'>
           <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
           <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
+          </div>
+        </Card.Body>
+        </Card>
+        </Col>
+        <Col>
+        <Card style={{ width: '18rem' }}>
+        <Card.Body>
+          <Card.Title>Criteria 10</Card.Title>
+          <div className='alignment'>
+          <Card.Text>
+            Governance, Institutional Support and Financial Resources
+          </Card.Text>
+          <div className='d-flex justify-content-between'>
+          <Card.Link >OPEN CRITERIAN PAGE</Card.Link>
+          <Card.Link >VIEW CRITERIAN DETAILS</Card.Link>
+          </div>
           </div>
         </Card.Body>
         </Card>

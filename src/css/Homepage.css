@@ -6,4 +6,14 @@
 .card{
     width: 18.8rem !important;
     margin-bottom: 2rem;
+    height: 202px;
+}
+.card-text{
+    width: 200px;
+}
+.alignment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85%;
 }
